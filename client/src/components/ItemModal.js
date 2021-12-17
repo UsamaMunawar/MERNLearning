@@ -10,7 +10,6 @@ import {
   Label,
   Input,
 } from 'reactstrap';
-import { v4 as uuidv4 } from 'uuid';
 import { addItem } from '../actions/itemActions';
 
 const ItemModal = () => {

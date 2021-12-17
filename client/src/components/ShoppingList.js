@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,7 +7,6 @@ import ItemModal from './ItemModal';
 
 const ShoppingList = () => {
   const dispatch = useDispatch();
-  const [items, setItems] = useState([]);
   const item = useSelector((state) => state.item.items);
 
   useEffect(() => {
