@@ -2,7 +2,7 @@ import { GET_ERRORS, CLEAR_ERRORS } from './types';
 
 // RETURN ERRORS
 
-export const returnErros = (msg, status, id = null) => {
+export const returnErrors = (msg, status, id = null) => {
   return {
     type: GET_ERRORS,
     payload: { msg, status, id },
@@ -10,7 +10,7 @@ export const returnErros = (msg, status, id = null) => {
 };
 
 // CLEAR ERRORS
-export const clearErros = () => {
+export const clearErrors = () => {
   return {
     type: CLEAR_ERRORS,
   };

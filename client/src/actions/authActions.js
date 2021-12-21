@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { returnErrors, returnErros } from './errorActions';
+import { returnErrors } from './errorActions';
 
 import {
   USER_LOADED,
@@ -13,7 +13,7 @@ import {
 } from './types';
 
 //Check token and load user
-const loadUser = () => (dispatch, getState) => {
+export const loadUser = () => (dispatch, getState) => {
   //User loading
   dispatch({ type: USER_LOADING });
 
@@ -26,12 +26,43 @@ const loadUser = () => (dispatch, getState) => {
       })
     )
     .catch((err) => {
-      dispatch(returnErros(err.response.data, err.response.status));
+      dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({
         type: AUTH_ERROR,
       });
     });
 };
+
+//Register user
+export const register =
+  ({ name, email, password }) =>
+  (dispatch) => {
+    //Headers
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    //Request Body
+    const body = JSON.stringify({ name, email, password });
+    axios
+      .post('/api/users', body, config)
+      .then((res) =>
+        dispatch({
+          type: REGISTER_SUCCESS,
+          payload: res.data,
+        })
+      )
+      .catch((err) => {
+        dispatch(
+          returnErrors(err.response.data, err.response.status, 'REGISTER_FAIL')
+        );
+        dispatch({
+          type: REGISTER_FAIL,
+        });
+      });
+  };
 
 //Setup config/headers and token
 export const tokenConfig = (getState) => {
@@ -49,5 +80,3 @@ export const tokenConfig = (getState) => {
   }
   return config;
 };
-
-export default loadUser;

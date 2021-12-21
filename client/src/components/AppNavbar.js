@@ -9,6 +9,7 @@ import {
   NavLink,
   Container,
 } from 'reactstrap';
+import RegisterModal from './auth/registerModal';
 
 const AppNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,11 +23,12 @@ const AppNavbar = () => {
       <Navbar color='dark' dark expand='sm' className='mb-5'>
         <Container>
           <NavbarBrand href='/'>ShoppingList</NavbarBrand>
+
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className='ml-auto' navbar>
               <NavItem>
-                <NavLink href='https://github.com/UsamaMunawar'>GitHub</NavLink>
+                <RegisterModal />
               </NavItem>
             </Nav>
           </Collapse>
